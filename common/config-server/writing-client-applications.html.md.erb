@@ -142,7 +142,7 @@ compile("org.springframework.boot:spring-boot-starter-actuator")
 You can now visit `/actuator/env` to see the application environment's properties (the following shows an excerpt of an example response):
 
 <pre class="terminal">
-$ curl https://cookie.apps.wise.com/actuator/env
+$ curl https://cookie.apps.example.com/actuator/env
 {
   "activeProfiles": [
   "development",
@@ -193,7 +193,7 @@ public class Menu {
 This means that after you change values in the configuration source Git repository, you can update the `special` on the `CookController` class's `menu` by creating a refresh event for the app:
 
 <pre class="terminal">
-$ curl https://cookie.apps.wise.com/restaurant
+$ curl https://cookie.apps.example.com/restaurant
 Today's special is: Pickled Cactus
 
 $ git commit -am "new special"
@@ -202,10 +202,10 @@ $ git commit -am "new special"
 
 $ git push
 
-$ curl -X POST -d {} -H "Content-Type: application/json" https://cookie.apps.wise.com/actuator/refresh
+$ curl -X POST -d {} -H "Content-Type: application/json" https://cookie.apps.example.com/actuator/refresh
 ["cook.special"]
 
-$ curl https://cookie.apps.wise.com/restaurant
+$ curl https://cookie.apps.example.com/restaurant
 Today's special is: Birdfeather Tea
 </pre>
 
@@ -397,10 +397,10 @@ System-Provided:
   "p-config-server": [
    {
     "credentials": {
-     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.wise.com/oauth/token",
+     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.example.com/oauth/token",
      "client_id": "p-config-server-876cd13b-1564-4a9a-9d44-c7c8a6257b73",
      "client_secret": "rU7dMUw6bQjR",
-     "uri": "https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com"
+     "uri": "https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com"
     },
 [...]
 </pre>

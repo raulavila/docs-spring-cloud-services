@@ -17,7 +17,7 @@ $ cf service circuit-breaker-dashboard
 Service instance: circuit-breaker-dashboard
 Service: p-circuit-breaker-dashboard
 [...]
-Dashboard: https://spring-cloud-broker.apps.wise.com/dashboard/p-circuit-breaker-dashboard/97869d78-5d4e-410b-9c71-bb622ca49f7d
+Dashboard: https://spring-cloud-broker.apps.example.com/dashboard/p-circuit-breaker-dashboard/97869d78-5d4e-410b-9c71-bb622ca49f7d
 </pre>
 
 Visit the URL given for "Dashboard".
@@ -31,7 +31,7 @@ With the &#8220;Agency&#8221; example app (see the <a href="https://github.com/s
 To see the circuit breaker in action, use curl, <a href="https://jmeter.apache.org/">JMeter</a>, <a href="https://httpd.apache.org/docs/2.2/programs/ab.html">Apache Bench</a>, or similar to simulate load.
 
 <pre class="terminal">
-$ while true; do curl agency.wise.com; done
+$ while true; do curl agency.example.com; done
 </pre>
 
 With the Company app running and available via the Service Registry instance (see <a href="./writing-client-applications.html">Writing Client Applications</a>), the Agency app responds with a guide name, indicating a successful service call. If you stop Company, Agency will respond with a "None available" message, indicating that the call to its `getGuide()` method failed and was redirected to the fallback method.

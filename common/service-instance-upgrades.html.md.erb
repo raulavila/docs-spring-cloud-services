@@ -38,7 +38,7 @@ After an upgrade of the Spring Cloud Services product, follow the below steps to
 1. Verify that the updated original app functions properly, then use the `cf map-route` command to map the original route to the updated original app.
 
     <pre class="terminal">
-    $ cf map-route cook wise.com -n cook
+    $ cf map-route cook example.com -n cook
     </pre>
 
 1. Delete the old app and service instance, then delete the temporary route on the updated app.
@@ -48,7 +48,7 @@ After an upgrade of the Spring Cloud Services product, follow the below steps to
 
     $ cf delete-service config-server-old
 
-    $ cf delete-route wise.com -n cook-new
+    $ cf delete-route example.com -n cook-new
     </pre>
     
 ## <a id="service-registry-upgrades"></a>Service Registry Upgrades

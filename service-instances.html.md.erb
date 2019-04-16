@@ -40,7 +40,7 @@ Target the org and space of the service instance.
 <pre class="terminal">
 $ cf target -o myorg -s development
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            myorg
 Space:          development
@@ -95,7 +95,7 @@ Locate a backing app for a service instance as described in the [Access Service 
 Append `/actuator/info` to the route for the app. In the example above, the resulting URI would be:
 
 ```
-https://config-021b3d73-3ffc-4cb8-a105-26f5aaa54dff.wise.com/actuator/info
+https://config-021b3d73-3ffc-4cb8-a105-26f5aaa54dff.example.com/actuator/info
 ```
 
 Visit the URI in a browser or request it from another client (for example curl at a command line). The response is JSON, as in the following example for a Config Server service instance:
@@ -117,7 +117,7 @@ The response may include additional fields depending on the service type, as in 
 
 ```
 {
-  "issuer": "https://p-spring-cloud-services.uaa.wise.com/oauth/token",
+  "issuer": "https://p-spring-cloud-services.uaa.example.com/oauth/token",
   "version": "5",
   "nodeCount": "1",
   "git": {
@@ -216,7 +216,7 @@ To access logs for service instance backing apps, target the "p-spring-cloud-ser
 <pre class="terminal">
 $ cf target -o p-spring-cloud-services -s instances
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            p-spring-cloud-services
 Space:          instances
@@ -225,10 +225,10 @@ Getting apps in org p-spring-cloud-services / space instances as admin...
 OK
 
 name                                           requested state   instances   memory   disk   urls
-config-86b38ce0-eed8-4c01-adb4-1a651a6178e2    started           1/1         1G       1G     config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com
-eureka-493b6b17-512a-4961-8f85-6178251fe2fa    started           1/1         1G       1G     eureka-493b6b17-512a-4961-8f85-6178251fe2fa.apps.wise.com
-hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.wise.com
-turbine-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     turbine-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.wise.com
+config-86b38ce0-eed8-4c01-adb4-1a651a6178e2    started           1/1         1G       1G     config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com
+eureka-493b6b17-512a-4961-8f85-6178251fe2fa    started           1/1         1G       1G     eureka-493b6b17-512a-4961-8f85-6178251fe2fa.apps.example.com
+hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.example.com
+turbine-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     turbine-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.example.com
 </pre>
 
 Then you can use ```cf logs``` to tail logs for a backing app.
@@ -269,17 +269,17 @@ The Service Registry's Eureka backing app, the Config Server's backing app, and 
 
 2. From the **Route** tab, copy the value of the app's route, as described in the [Get Service Instance Information](#get-service-instance-information) section.
 
-3. In a terminal where you have already authenticated to PCF using `cf auth` or `cf login`, send the request to the Actuator endpoint (for example using cURL), appending `/actuator/` and the endpoint ID to the route URL; for example, for the `health` endpoint, this would be something like `https://config-[GUID].apps.wise.com/actuator/health`. The current OAuth 2 token can be obtained using the `cf oauth-token` command. In the example below, the response from `cf oauth-token` is used directly inside the header string.
+3. In a terminal where you have already authenticated to PCF using `cf auth` or `cf login`, send the request to the Actuator endpoint (for example using cURL), appending `/actuator/` and the endpoint ID to the route URL; for example, for the `health` endpoint, this would be something like `https://config-[GUID].apps.example.com/actuator/health`. The current OAuth 2 token can be obtained using the `cf oauth-token` command. In the example below, the response from `cf oauth-token` is used directly inside the header string.
 
     <pre class="terminal">
-    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/actuator/health -H "Authorization: $(cf oauth-token)"
+    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/actuator/health -H "Authorization: $(cf oauth-token)"
     {"status":"UP","git":{"status":"UP","default":{"status":"UP","repository":{"uri":"https://github.com/pivotal-cf/p-spring-cloud-services-acceptance"}},"app1":{"status":"UP","repository":{"uri":"https://github.com/pivotal-cf/p-spring-cloud-services-acceptance"}},"app2":{"status":"UP","repository":{"uri":"https://github.com/pivotal-cf/p-spring-cloud-services-acceptance"}}},"diskSpace":{"status":"UP","total":1056858112,"free":886517760,"threshold":10485760},"refreshScope":{"status":"UP"}}
     </pre>
 
     You also can send a request to each app's `health` Actuator endpoint without the authorization header. In that case, the response JSON object will contain only the summary status:
 
     <pre class="terminal">
-    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/actuator/health
+    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/actuator/health
     {"status":"UP"}
     </pre>
 
