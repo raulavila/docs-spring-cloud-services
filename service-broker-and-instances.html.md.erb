@@ -78,7 +78,7 @@ Target the org and space of the service instance.
 <pre class="terminal">
 $ cf target -o myorg -s development
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            myorg
 Space:          development
@@ -124,7 +124,7 @@ Look for the backing application named as described above, with the prefix speci
 <a id="get-service-instance-information"></a>
 #### Get Service Instance Information
 
-Each backing application for a service instance has the [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready) `info` endpoint enabled and accessible at `/info`. You can obtain version and other information about a service instance by accessing this endpoint.
+Each backing application for a service instance has the [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready) `info` endpoint enabled and accessible at `/info`. You can obtain version and other information about a service instance by accessing this endpoint.
 
 Locate a backing application for a service instance as described in the [Access Service Instance Backing Applications in Apps Manager](#access-service-instance-backing-applications-in-apps-manager) section. In Apps Manager, on the page for the backing application, click the **Route** tab and copy the route for the application.
 
@@ -133,7 +133,7 @@ Locate a backing application for a service instance as described in the [Access 
 Append `/info` to the route for the application. In the example above, the resulting URI would be:
 
 ```
-https://config-021b3d73-3ffc-4cb8-a105-26f5aaa54dff.wise.com/info
+https://config-021b3d73-3ffc-4cb8-a105-26f5aaa54dff.example.com/info
 ```
 
 Visit the URI in a browser or request it from another client (e.g. curl at a command line). The response is JSON, as in the following example for a Config Server service instance:
@@ -155,7 +155,7 @@ The response may include additional fields depending on the service type, as in 
 
 ```
 {
-  "issuer": "https://p-spring-cloud-services.uaa.wise.com/oauth/token",
+  "issuer": "https://p-spring-cloud-services.uaa.example.com/oauth/token",
   "version": "5",
   "nodeCount": "1",
   "git": {
@@ -282,7 +282,7 @@ To access logs for the SB and Worker applications, target the "system" org and i
 <pre class="terminal">
 $ cf target -o system -s p-spring-cloud-services
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            system
 Space:          p-spring-cloud-services
@@ -291,8 +291,8 @@ Getting apps in org system / space p-spring-cloud-services as admin...
 OK
 
 name                         requested state   instances   memory   disk   urls
-spring-cloud-broker          started           1/1         1G       1G     spring-cloud-broker.apps.wise.com
-spring-cloud-broker-worker   started           1/1         1G       1G     spring-cloud-broker-worker.apps.wise.com
+spring-cloud-broker          started           1/1         1G       1G     spring-cloud-broker.apps.example.com
+spring-cloud-broker-worker   started           1/1         1G       1G     spring-cloud-broker-worker.apps.example.com
 </pre>
 
 Then you can use ```cf logs``` to tail logs for either the SB:
@@ -316,7 +316,7 @@ To access logs for service instance backing applications, target the "p-spring-c
 <pre class="terminal">
 $ cf target -o p-spring-cloud-services -s instances
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            p-spring-cloud-services
 Space:          instances
@@ -325,10 +325,10 @@ Getting apps in org p-spring-cloud-services / space instances as admin...
 OK
 
 name                                           requested state   instances   memory   disk   urls
-config-86b38ce0-eed8-4c01-adb4-1a651a6178e2    started           1/1         1G       1G     config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com
-eureka-493b6b17-512a-4961-8f85-6178251fe2fa    started           1/1         1G       1G     eureka-493b6b17-512a-4961-8f85-6178251fe2fa.apps.wise.com
-hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.wise.com
-turbine-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     turbine-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.wise.com
+config-86b38ce0-eed8-4c01-adb4-1a651a6178e2    started           1/1         1G       1G     config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com
+eureka-493b6b17-512a-4961-8f85-6178251fe2fa    started           1/1         1G       1G     eureka-493b6b17-512a-4961-8f85-6178251fe2fa.apps.example.com
+hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.example.com
+turbine-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     turbine-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.example.com
 </pre>
 
 Then you can use ```cf logs``` to tail logs for a backing application.
@@ -369,17 +369,17 @@ The SB application, the Worker application, the Service Registry's Eureka backin
 
 2. From the **Route** tab, copy the value of the application's route, as described in the [Get Service Instance Information](#get-service-instance-information) section.
 
-3. In a terminal where you have already authenticated to PCF using `cf auth` or `cf login`, send the request to the Actuator endpoint (e.g., using cURL), appending the endpoint ID to the route URL; e.g., for the `health` endpoint, this would be something like `https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/health`. The current OAuth 2 token can be obtained using the `cf oauth-token` command. In the example below, the response from `cf oauth-token` is used directly inside the header string.
+3. In a terminal where you have already authenticated to PCF using `cf auth` or `cf login`, send the request to the Actuator endpoint (e.g., using cURL), appending the endpoint ID to the route URL; e.g., for the `health` endpoint, this would be something like `https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/health`. The current OAuth 2 token can be obtained using the `cf oauth-token` command. In the example below, the response from `cf oauth-token` is used directly inside the header string.
 
     <pre class="terminal">
-    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/health -H "Authorization: $(cf oauth-token)"
+    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/health -H "Authorization: $(cf oauth-token)"
     {"status":"UP","git":{"status":"UP","default":{"status":"UP","repository":{"uri":"https://github.com/pivotal-cf/p-spring-cloud-services-acceptance"}},"app1":{"status":"UP","repository":{"uri":"https://github.com/pivotal-cf/p-spring-cloud-services-acceptance"}},"app2":{"status":"UP","repository":{"uri":"https://github.com/pivotal-cf/p-spring-cloud-services-acceptance"}}},"diskSpace":{"status":"UP","total":1056858112,"free":886517760,"threshold":10485760},"refreshScope":{"status":"UP"}}
     </pre>
 
     You also can send a request to each application's `health` Actuator endpoint without the authorization header. In that case, the response JSON object will contain only the summary status:
 
     <pre class="terminal">
-    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/health
+    $ curl -k https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/health
     {"status":"UP"}
     </pre>
 
@@ -397,19 +397,19 @@ To view the configuration properties that a Config Server service instance is re
     An example request URL might look like this:
 
     ```
-    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/cook/production
+    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/cook/production
     ```
 
     Or, for the `default` profile:
 
     ```
-    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/cook/default
+    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/cook/default
     ```
 
     You can make the request using curl, providing the token---`TOKEN` in the below example---in a header with the `-H` or `--header` option:
 
     <pre class="terminal">
-    $ curl -H 'Authorization: bearer TOKEN' https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/cook/default
+    $ curl -H 'Authorization: bearer TOKEN' https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/cook/default
     {"name":"cook","profiles":["default"],"label":null,"version":"7b5da0d68d9237f2852f7ac6c5e7474fd433c3f3","propertySources":[{"name":"https://github.com/spring-cloud-services-samples/cook-config/cook.properties","source":{"cook.special":"Pickled Cactus"}}]}
     </pre>
 

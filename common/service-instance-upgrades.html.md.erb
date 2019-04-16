@@ -44,18 +44,18 @@ After an upgrade of the Spring Cloud Services product, follow the below steps to
     Updating app cook in org myorg / space development as user...
     OK
 
-    Using route cook-new.wise.com
+    Using route cook-new.example.com
     Uploading cook...
     </pre>
 
 1. Verify that the updated original application functions properly, then use the `cf map-route` command to map the original route to the updated original application.
 
     <pre class="terminal">
-    $ cf map-route cook wise.com -n cook
-    Creating route cook.wise.com for org myorg / space development as user...
+    $ cf map-route cook example.com -n cook
+    Creating route cook.example.com for org myorg / space development as user...
     OK
-    Route cook.wise.com already exists
-    Adding route cook.wise.com to app cook in org myorg / space development as user...
+    Route cook.example.com already exists
+    Adding route cook.example.com to app cook in org myorg / space development as user...
     OK
     </pre>
 
@@ -74,10 +74,10 @@ After an upgrade of the Spring Cloud Services product, follow the below steps to
     Deleting service config-server-old in org myorg / space development as user...
     OK
 
-    $ cf delete-route wise.com -n cook-new
+    $ cf delete-route example.com -n cook-new
 
-    Really delete the route cook-new.wise.com?> y
-    Deleting route cook-new.wise.com...
+    Really delete the route cook-new.example.com?> y
+    Deleting route cook-new.example.com...
     OK
     </pre>
     

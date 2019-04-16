@@ -64,7 +64,7 @@ For information about using an application to access configuration values served
 Proxy server configuration must be defined for each item in the composite set. For example:
 
 ```
-cf create-service p-config-server standard config-server -c '{ "composite": [ { "git": { "uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "http": { "host": "http://proxy1.com", "port": 3218 } } } }, { "git": { "uri": "https://github.com/spring-cloud-samples/config-repo", "proxy": { "http": { "host": "http://proxy2.com", "port": 3218 } } } }, { "vault": { "host": "127.0.0.1", "proxy": { "http": { "host": "http://proxy1.com", "port": 3218 } } } } ] }'
+cf create-service p-config-server standard config-server -c '{ "composite": [ { "git": { "uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "http": { "host": "http://proxy1.example.com", "port": 3218 } } } }, { "git": { "uri": "https://github.com/spring-cloud-samples/config-repo", "proxy": { "http": { "host": "http://proxy2.example.com", "port": 3218 } } } }, { "vault": { "host": "127.0.0.1", "proxy": { "http": { "host": "http://proxy1.example.com", "port": 3218 } } } } ] }'
 ```
 
 For detailed information about configuring proxy support, see the [HTTP(S) Proxy Repository Access](/spring-cloud-services/config-server/configuring-with-git.html#proxy-repository-access) section of the [Configuring with Git](/spring-cloud-services/config-server/configuring-with-git.html) topic and the [HTTP(S) Proxy Repository Access](/spring-cloud-services/config-server/configuring-with-vault.html#proxy-repository-access) section of the [Configuring with Vault](/spring-cloud-services/config-server/configuring-with-vault.html) topic.
