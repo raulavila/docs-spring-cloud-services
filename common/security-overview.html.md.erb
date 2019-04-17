@@ -51,7 +51,7 @@ The following abbreviations, example values, and terms are used in this topic as
 
 All components in SCS force HTTPS for all inbound requests. Because SSL terminates at the load balancer, requests are deemed to originate over HTTPS by inspecting the ```X-Forwarded-For```, ```X-Forwarded-Proto```, and ```X-Forwarded-Port``` headers. More on how this is implemented can be found in the [Spring Boot documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-security.html#howto-enable-https).
 
-All outbound HTTP requests made by SCS components are also made over HTTPS. These requests nearly always contain credentials, and are made to other components within the Cloud Foundry environment. In an environment that uses self-signed certificates in the HA proxy configuration, outbound HTTPS requests to other components would fail because the self-signed certificate would not be trusted by the JVM's default truststore (e.g. ```cacerts```). To get around this, all components use the [cloudfoundry-certificate-truster](http://central.maven.org/maven2/io/pivotal/spring/cloud/cloudfoundry-certificate-truster/1.0.1.RELEASE/) to add the CF environment's SSL certificate to the JVM's truststore on application startup.
+All outbound HTTP requests made by SCS components are also made over HTTPS. These requests nearly always contain credentials, and are made to other components within the Cloud Foundry environment. In an environment that uses self-signed certificates in the HA proxy configuration, outbound HTTPS requests to other components would fail because the self-signed certificate would not be trusted by the JVM's default truststore (e.g. ```cacerts```). To get around this, all components use the [cloudfoundry-certificate-truster](https://repo1.maven.org/maven2/io/pivotal/spring/cloud/cloudfoundry-certificate-truster/1.0.1.RELEASE/) to add the CF environment's SSL certificate to the JVM's truststore on application startup.
 
 The SSL certificate used by the CF environment must also include Subject Alternative Names (SANs) for domain wildcards ```*.login.domain.com``` and ```*.uaa.domain.com```. This is needed for the correct operation [of Multi-tenant UAA](https://docs.pivotal.io/pivotalcf/concepts/architecture/uaa.html), which relies on subdomains of UAA.
 
@@ -83,7 +83,7 @@ The installation file is the ```.pivotal``` file that contains the Spring Cloud 
 
 The installation file is generated from source code repositories hosted on ```github.com```. The repositories can only be accessed by authorized persons and cannot be accessed over a non-encrypted channel. No credentials are stored in any source repository used by Spring Cloud Services.
 
-[Concourse](https://concourse.ci/) is used as the build pipeline to generate the installation file. The infrastructure that hosts Concourse can only be accessed from within the Pivotal network, using a username and password stored internally by Concourse. The build pipeline configuration contains credentials to the S3 bucket which hosts the installation file and intermediate artifacts, as well as the GitHub API key providing read/write access to the source code repositories. The resulting installation file built by the Concourse pipeline does not contain any credentials.
+[Concourse](https://concourse-ci.org) is used as the build pipeline to generate the installation file. The infrastructure that hosts Concourse can only be accessed from within the Pivotal network, using a username and password stored internally by Concourse. The build pipeline configuration contains credentials to the S3 bucket which hosts the installation file and intermediate artifacts, as well as the GitHub API key providing read/write access to the source code repositories. The resulting installation file built by the Concourse pipeline does not contain any credentials.
 
 The installation file is downloaded from [https://network.pivotal.io](https://network.pivotal.io), can only be accessed by authorized persons, and cannot be accessed over a non-encrypted channel.
 
@@ -133,7 +133,7 @@ Caching the permission check in this manner avoids the load and extra round trip
 
 <a id="sb-entry-point-actuator-endpoints"></a>**Actuator Endpoints**
 
-[Actuator endpoints](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready-endpoints) are enabled and require HTTPS and an authenticated session. The token is obtained from UAA via the OAuth 2 Authorization Code flow as documented [here](https://docs.cloudfoundry.org/services/dashboard-sso.html#oauth2-flow); the token is then used to make a request to the [CC ```/v2/apps/:guid/env``` endpoint](https://apidocs.cloudfoundry.org/219/apps/get_the_env_for_an_app.html), which can only be accessed by Space Developers in the space that hosts the SB. The GUID used in the request is extracted from the ```VCAP_APPLICATION``` environment variable, whose value is given by the CC. The only user that can access these endpoints is the Operator.
+[Actuator endpoints](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-endpoints) are enabled and require HTTPS and an authenticated session. The token is obtained from UAA via the OAuth 2 Authorization Code flow as documented [here](https://docs.cloudfoundry.org/services/dashboard-sso.html#oauth2-flow); the token is then used to make a request to the [CC ```/v2/apps/:guid/env``` endpoint](https://apidocs.cloudfoundry.org/219/apps/get_the_env_for_an_app.html), which can only be accessed by Space Developers in the space that hosts the SB. The GUID used in the request is extracted from the ```VCAP_APPLICATION``` environment variable, whose value is given by the CC. The only user that can access these endpoints is the Operator.
 
 This Actuator SSO flow is used by other components that already use [Dashboard SSO](#sb-entry-point-service-broker-dashboard), as no additional dependencies are required to enable this.
 
@@ -190,7 +190,7 @@ The Worker listens for messages posted to the p-rabbitmq service instance. The S
 
 **Actuator Endpoints**
 
-[Actuator endpoints](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready-endpoints) are enabled and require HTTPS and Basic authentication. Credentials that provide this access are set at installation time in the Worker's environment variables. These environment variables are only accessible to the Operator.
+[Actuator endpoints](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-endpoints) are enabled and require HTTPS and Basic authentication. Credentials that provide this access are set at installation time in the Worker's environment variables. These environment variables are only accessible to the Operator.
 
 ##### External Dependencies
 
@@ -301,7 +301,7 @@ Other than checking for the claims mentioned in the previous section, no other a
 
 **Actuator Endpoints**
 
-[Actuator endpoints](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready-endpoints) are enabled and require HTTPS and Basic authentication, with the exception of ```/health``` as described above. Credentials that provide this access are set at provision time in the config-server application's environment variables. These environment variables are only accessible to the Operator.
+[Actuator endpoints](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-endpoints) are enabled and require HTTPS and Basic authentication, with the exception of ```/health``` as described above. Credentials that provide this access are set at provision time in the config-server application's environment variables. These environment variables are only accessible to the Operator.
 
 ##### External Dependencies
 
