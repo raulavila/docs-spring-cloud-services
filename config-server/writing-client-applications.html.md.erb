@@ -18,8 +18,8 @@ Spring Cloud Services uses HTTPS for all client-to-service communication. If you
 Spring Cloud Services can add the certificate for you automatically. For this to work, you must set the ```CF_TARGET``` environment variable on your client application to the API endpoint of your Elastic Runtime instance:
 
 <pre class="terminal">
-$ cf set-env cook CF_TARGET https://api.cf.wise.com
-Setting env variable 'CF_TARGET' to 'https://api.cf.wise.com' for app cook in org myorg / space development as user...
+$ cf set-env cook CF_TARGET https://api.cf.example.com
+Setting env variable 'CF_TARGET' to 'https://api.cf.example.com' for app cook in org myorg / space development as user...
 OK
 TIP: Use 'cf restage' to ensure your env variable changes take effect
 
@@ -148,7 +148,7 @@ compile("org.springframework.boot:spring-boot-starter-actuator")
 You can now visit `/env` to see the application environment's properties (the following shows an excerpt of an example response):
 
 <pre class="terminal">
-$ curl https://cookie.apps.wise.com/env
+$ curl https://cookie.apps.example.com/env
 {
   "profiles":[
     "dev","cloud"
@@ -158,9 +158,9 @@ $ curl https://cookie.apps.wise.com/env
   },
   "vcap":{
     "vcap.application.limits.mem":"512",
-    "vcap.application.application_uris":"cookie.apps.wise.com",
+    "vcap.application.application_uris":"cookie.apps.example.com",
     "vcap.services.config-server.name":"config-server",
-    "vcap.application.uris":"cookie.apps.wise.com",
+    "vcap.application.uris":"cookie.apps.example.com",
     "vcap.application.application_version":"179de3f9-38b6-4939-bff5-41a14ce4e700",
     "vcap.services.config-server.tags[0]":"configuration",
     "vcap.application.space_name":"development",
@@ -190,7 +190,7 @@ public class Menu {
 This means that after you change values in the configuration source repository, you can update the `special` on the `Application` class's `menu` with a refresh event triggered on the application:
 
 <pre class="terminal">
-$ curl https://cookie.apps.wise.com/restaurant
+$ curl https://cookie.apps.example.com/restaurant
 Today's special is: Pickled Cactus
 
 $ git commit -am "new special"
@@ -199,10 +199,10 @@ $ git commit -am "new special"
 
 $ git push
 
-$ curl -X POST https://cookie.apps.wise.com/refresh
+$ curl -X POST https://cookie.apps.example.com/refresh
 ["cook.special"]
 
-$ curl https://cookie.apps.wise.com/restaurant
+$ curl https://cookie.apps.example.com/restaurant
 Today's special is: Birdfeather Tea
 </pre>
 

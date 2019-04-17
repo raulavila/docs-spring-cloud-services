@@ -12,7 +12,7 @@ To update a Config Server service instance's settings, target the org and space 
 <pre class="terminal">
 $ cf target -o myorg -s development
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           user
 Org:            myorg
 Space:          development
@@ -103,7 +103,7 @@ Tags:
 Plan: standard
 Description: Config Server for Spring Cloud Applications
 Documentation url: https://docs.pivotal.io/spring-cloud-services/
-Dashboard: https://spring-cloud-broker.apps.wise.com/dashboard/p-config-server/e2615a44-66f5-4fda-9ddc-079af1db9ae4
+Dashboard: https://spring-cloud-broker.apps.example.com/dashboard/p-config-server/e2615a44-66f5-4fda-9ddc-079af1db9ae4
 
 Last Operation
 Status: update succeeded
@@ -271,13 +271,13 @@ You can configure a Config Server service instance to access configuration sourc
 Settings for an HTTP proxy are set in the `git.proxy.http` object. These might be set as shown in the following JSON:
 
 ```
-'{"git": { "proxy": { "http": { "host": "proxy.wise.com", "port": "80" } } } }'
+'{"git": { "proxy": { "http": { "host": "proxy.example.com", "port": "80" } } } }'
 ```
 
 Settings for an HTTPS proxy are set in the `git.proxy.https` object. These might be set as shown in the following JSON:
 
 ```
-'{"git": { "proxy": { "https": { "host": "secure.wise.com", "port": "443" } } } }'
+'{"git": { "proxy": { "https": { "host": "secure.example.com", "port": "443" } } } }'
 ```
 
 The parameters used to configure HTTP or HTTPS proxy settings for the Config Server are listed below.
@@ -300,11 +300,11 @@ The parameters used to configure HTTP or HTTPS proxy settings for the Config Ser
 To update a Config Server service instance to use an HTTP proxy to access configuration sources, run:
 
 <pre class="terminal">
-$ cf update-service config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "http": { "host": "proxy.wise.com", "port": "80" } } } }'
+$ cf update-service config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "http": { "host": "proxy.example.com", "port": "80" } } } }'
 </pre>
 
-To update a Config Server service instance to use an authenticated HTTPS proxy to access configuration sources, specifying that `example.com` should be accessed outside of the proxy, run:
+To update a Config Server service instance to use an authenticated HTTPS proxy to access configuration sources, specifying that `example.net` should be accessed outside of the proxy, run:
 
 <pre class="terminal">
-$ cf update-service config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "https": { "host": "secure.wise.com", "port": "443", "username": "jim", "password": "wright62", "nonProxyHosts": "example.com" } } } }'
+$ cf update-service config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "https": { "host": "secure.example.com", "port": "443", "username": "jim", "password": "wright62", "nonProxyHosts": "example.net" } } } }'
 </pre>

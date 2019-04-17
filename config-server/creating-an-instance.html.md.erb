@@ -14,7 +14,7 @@ Begin by targeting the correct org and space.
 <pre class="terminal">
 $ cf target -o myorg -s development
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           user
 Org:            myorg
 Space:          development
@@ -115,7 +115,7 @@ Tags:
 Plan: standard
 Description: Config Server for Spring Cloud Applications
 Documentation url: https://docs.pivotal.io/spring-cloud-services/
-Dashboard: https://spring-cloud-broker.apps.wise.com/dashboard/p-config-server/9281c950-9b07-495e-9af4-f9fbd277037d
+Dashboard: https://spring-cloud-broker.apps.example.com/dashboard/p-config-server/9281c950-9b07-495e-9af4-f9fbd277037d
 
 Last Operation
 Status: create succeeded
@@ -283,13 +283,13 @@ You can configure a Config Server service instance to access configuration sourc
 Settings for an HTTP proxy are set in the `git.proxy.http` object. These might be set as shown in the following JSON:
 
 ```
-'{"git": { "proxy": { "http": { "host": "proxy.wise.com", "port": "80" } } } }'
+'{"git": { "proxy": { "http": { "host": "proxy.example.com", "port": "80" } } } }'
 ```
 
 Settings for an HTTPS proxy are set in the `git.proxy.https` object. These might be set as shown in the following JSON:
 
 ```
-'{"git": { "proxy": { "https": { "host": "secure.wise.com", "port": "443" } } } }'
+'{"git": { "proxy": { "https": { "host": "secure.example.com", "port": "443" } } } }'
 ```
 
 The parameters used to configure HTTP or HTTPS proxy settings for the Config Server are listed below.
@@ -312,13 +312,13 @@ The parameters used to configure HTTP or HTTPS proxy settings for the Config Ser
 To create a Config Server service instance that uses an HTTP proxy to access configuration sources, run:
 
 <pre class="terminal">
-$ cf create-service p-config-server standard config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "http": { "host": "proxy.wise.com", "port": "80" } } } }'
+$ cf create-service p-config-server standard config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "http": { "host": "proxy.example.com", "port": "80" } } } }'
 </pre>
 
-To create a Config Server service instance that uses an authenticated HTTPS proxy to access configuration sources, specifying that `example.com` should be accessed outside of the proxy, run:
+To create a Config Server service instance that uses an authenticated HTTPS proxy to access configuration sources, specifying that `example.net` should be accessed outside of the proxy, run:
 
 <pre class="terminal">
-$ cf create-service p-config-server standard config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "https": { "host": "secure.wise.com", "port": "443", "username": "jim", "password": "wright62", "nonProxyHosts": "example.com" } } } }'
+$ cf create-service p-config-server standard config-server -c '{"git": {"uri": "https://github.com/spring-cloud-services-samples/cook-config", "proxy": { "https": { "host": "secure.example.com", "port": "443", "username": "jim", "password": "wright62", "nonProxyHosts": "example.net" } } } }'
 </pre>
 
 ## <a id="using-apps-manager"></a>Using Apps Manager
