@@ -135,7 +135,7 @@ compile("org.springframework.boot:spring-boot-starter-actuator")
 You can now visit `/env` to see the application environment's properties (the following shows an excerpt of an example response):
 
 <pre class="terminal">
-$ curl https://cookie.apps.wise.com/env
+$ curl https://cookie.apps.example.com/env
 {
   "profiles":[
     "dev","cloud"
@@ -145,9 +145,9 @@ $ curl https://cookie.apps.wise.com/env
   },
   "vcap":{
     "vcap.application.limits.mem":"512",
-    "vcap.application.application_uris":"cookie.apps.wise.com",
+    "vcap.application.application_uris":"cookie.apps.example.com",
     "vcap.services.config-server.name":"config-server",
-    "vcap.application.uris":"cookie.apps.wise.com",
+    "vcap.application.uris":"cookie.apps.example.com",
     "vcap.application.application_version":"179de3f9-38b6-4939-bff5-41a14ce4e700",
     "vcap.services.config-server.tags[0]":"configuration",
     "vcap.application.space_name":"development",
@@ -177,7 +177,7 @@ public class Menu {
 This means that after you change values in the configuration source repository, you can update the `special` on the `Application` class's `menu` with a refresh event triggered on the application:
 
 <pre class="terminal">
-$ curl https://cookie.apps.wise.com/restaurant
+$ curl https://cookie.apps.example.com/restaurant
 Today's special is: Pickled Cactus
 
 $ git commit -am "new special"
@@ -186,10 +186,10 @@ $ git commit -am "new special"
 
 $ git push
 
-$ curl -X POST https://cookie.apps.wise.com/refresh
+$ curl -X POST https://cookie.apps.example.com/refresh
 ["cook.special"]
 
-$ curl https://cookie.apps.wise.com/restaurant
+$ curl https://cookie.apps.example.com/restaurant
 Today's special is: Birdfeather Tea
 </pre>
 
@@ -345,10 +345,10 @@ System-Provided:
   "p-config-server": [
    {
     "credentials": {
-     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.wise.com/oauth/token",
+     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.example.com/oauth/token",
      "client_id": "p-config-server-876cd13b-1564-4a9a-9d44-c7c8a6257b73",
      "client_secret": "rU7dMUw6bQjR",
-     "uri": "https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com"
+     "uri": "https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com"
     },
 [...]
 </pre>

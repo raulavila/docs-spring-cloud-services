@@ -17,10 +17,10 @@ The connector inspects Cloud Foundry's `VCAP_SERVICES` environment variable, whi
   "p-service-registry": [
    {
     "credentials": {
-     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.wise.com/oauth/token",
+     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.example.com/oauth/token",
      "client_id": "p-service-registry-57bdc399-5b2e-4131-b941-d0a4275c2da4",
      "client_secret": "GAmFDRU4KGnS",
-     "uri": "https://eureka-32fb7386-2d57-4054-91b4-9fd4dcbac221.wise.com"
+     "uri": "https://eureka-32fb7386-2d57-4054-91b4-9fd4dcbac221.example.com"
     },
     "label": "p-service-registry",
     "name": "service-registry",
@@ -70,7 +70,7 @@ Examples of values provided for the `eureka.instance.appname` property, values p
 
 #### Application Name Property Restrictions
 
-To identify instances of an application, Netflix Eureka uses three `eureka.instance` properties: `appname`, `virtualHostName`, and `secureVirtualHostName`. For consistency with Spring Cloud features such as [Spring Cloud Netflix Zuul](https://cloud.spring.io/spring-cloud-static/Camden.SR3/#_router_and_filter_zuul)</a>'s automatic routing to registered applications and the [load-balanced `RestTemplate`](https://cloud.spring.io/spring-cloud-static/Camden.SR3/#_spring_resttemplate_as_a_load_balancer_client) using [Spring Cloud Netflix Ribbon](https://cloud.spring.io/spring-cloud-static/Camden.SR3/#spring-cloud-ribbon), and to secure ownership of Eureka application names, the Spring Cloud Services Service Registry rejects a registration that includes different non-null values for any of these three properties.
+To identify instances of an application, Netflix Eureka uses three `eureka.instance` properties: `appname`, `virtualHostName`, and `secureVirtualHostName`. For consistency with Spring Cloud features such as [Spring Cloud Netflix Zuul](https://cloud.spring.io/spring-cloud-static/Camden.SR7/#_router_and_filter_zuul)</a>'s automatic routing to registered applications and the [load-balanced `RestTemplate`](https://cloud.spring.io/spring-cloud-static/Camden.SR7/#_spring_resttemplate_as_a_load_balancer_client) using [Spring Cloud Netflix Ribbon](https://cloud.spring.io/spring-cloud-static/Camden.SR7/#spring-cloud-ribbon), and to secure ownership of Eureka application names, the Spring Cloud Services Service Registry rejects a registration that includes different non-null values for any of these three properties.
 
 If you set only the `spring.application.name` property or the `eureka.instance.appname` property, the Spring Cloud Services connector will set the `eureka.instance.virtualHostName` and `eureka.instance.secureVirtualHostname` properties to the same value. If you explicitly set different values for `eureka.instance.appname`, `eureka.instance.virtualHostName`, and `eureka.instance.secureVirtualHostName`, the Spring Cloud Services connector will prevent the application from starting, and you will see an error message in the application logs:
 
