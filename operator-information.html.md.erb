@@ -94,7 +94,7 @@ Target the org and space of the service instance.
 <pre class="terminal">
 $ cf target -o myorg -s development
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            myorg
 Space:          development
@@ -189,10 +189,10 @@ System-Provided:
   "p-config-server": [
    {
     "credentials": {
-     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.wise.com/oauth/token",
+     "access_token_uri": "https://p-spring-cloud-services.uaa.cf.example.com/oauth/token",
      "client_id": "p-config-server-876cd13b-1564-4a9a-9d44-c7c8a6257b73",
      "client_secret": "rU7dMUw6bQjR",
-     "uri": "https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com"
+     "uri": "https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com"
     },
 [...]
 </pre>
@@ -247,7 +247,7 @@ To access logs for the SB and Worker applications, target the "system" org and i
 <pre class="terminal">
 $ cf target -o system -s p-spring-cloud-services
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            system
 Space:          p-spring-cloud-services
@@ -256,8 +256,8 @@ Getting apps in org system / space p-spring-cloud-services as admin...
 OK
 
 name                         requested state   instances   memory   disk   urls
-spring-cloud-broker          started           1/1         1G       1G     spring-cloud-broker.apps.wise.com
-spring-cloud-broker-worker   started           1/1         1G       1G     spring-cloud-broker-worker.apps.wise.com
+spring-cloud-broker          started           1/1         1G       1G     spring-cloud-broker.apps.example.com
+spring-cloud-broker-worker   started           1/1         1G       1G     spring-cloud-broker-worker.apps.example.com
 </pre>
 
 Then you can use ```cf logs``` to tail logs for either the SB:
@@ -281,7 +281,7 @@ To access logs for service instance backing applications, target the "p-spring-c
 <pre class="terminal">
 $ cf target -o p-spring-cloud-services -s instances
 
-API endpoint:   https://api.cf.wise.com (API version: 2.43.0)
+API endpoint:   https://api.cf.example.com (API version: 2.43.0)
 User:           admin
 Org:            p-spring-cloud-services
 Space:          instances
@@ -290,10 +290,10 @@ Getting apps in org p-spring-cloud-services / space instances as admin...
 OK
 
 name                                           requested state   instances   memory   disk   urls
-config-86b38ce0-eed8-4c01-adb4-1a651a6178e2    started           1/1         1G       1G     config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com
-eureka-493b6b17-512a-4961-8f85-6178251fe2fa    started           1/1         1G       1G     eureka-493b6b17-512a-4961-8f85-6178251fe2fa.apps.wise.com
-hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.wise.com
-turbine-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     turbine-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.wise.com
+config-86b38ce0-eed8-4c01-adb4-1a651a6178e2    started           1/1         1G       1G     config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com
+eureka-493b6b17-512a-4961-8f85-6178251fe2fa    started           1/1         1G       1G     eureka-493b6b17-512a-4961-8f85-6178251fe2fa.apps.example.com
+hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.example.com
+turbine-ff835bde-5b3a-4623-a57f-8d88028b6376   started           1/1         1G       1G     turbine-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.example.com
 </pre>
 
 Then you can use ```cf logs``` to tail logs for a backing application.
@@ -325,7 +325,7 @@ The SB application, the Worker application, the Service Registry's Eureka backin
 
     <%= image_tag("/spring-cloud-services/images/operator-information/hystrix.png") %>
 
-2. Visit the application's URL, appending the endpoint ID to that URL; e.g., for the `health` endpoint on a Circuit Breaker Dashboard service instance’s Hystrix backing application, this would be something like `https://hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.wise.com/health`.
+2. Visit the application's URL, appending the endpoint ID to that URL; e.g., for the `health` endpoint on a Circuit Breaker Dashboard service instance’s Hystrix backing application, this would be something like `https://hystrix-ff835bde-5b3a-4623-a57f-8d88028b6376.apps.example.com/health`.
 
 #### Endpoints on Config Server
 
@@ -339,7 +339,7 @@ The Config Server's Spring Cloud Config Server backing application uses HTTP Bas
 
     <%= image_tag("/spring-cloud-services/images/operator-information/config-server-env-variables.png") %>
 
-3. Visit the application's URL, appending the endpoint ID to that URL; e.g., for the `health` endpoint, this would be something like `config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/health`. When challenged, provide the values of `SECURITY_USER_NAME` and `SECURITY_USER_PASSWORD` from Step 2.
+3. Visit the application's URL, appending the endpoint ID to that URL; e.g., for the `health` endpoint, this would be something like `config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/health`. When challenged, provide the values of `SECURITY_USER_NAME` and `SECURITY_USER_PASSWORD` from Step 2.
 
 ### <a id="invoke-config-server-endpoints"></a>Invoke Config Server Endpoints
 
@@ -353,19 +353,19 @@ To view the configuration properties that a Config Server service instance is re
     An example request URL might look like this:
 
     ```
-    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/cook/production
+    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/cook/production
     ```
 
     Or, for the `default` profile:
 
     ```
-    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/cook/default
+    https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/cook/default
     ```
 
     You can make the request using curl, providing the token---`TOKEN` in the below example---in a header with the `-H` or `--header` option:
 
     <pre class="terminal">
-    $ curl -H 'Authorization: bearer TOKEN_STRING' https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.wise.com/cook/default
+    $ curl -H 'Authorization: bearer TOKEN_STRING' https://config-86b38ce0-eed8-4c01-adb4-1a651a6178e2.apps.example.com/cook/default
     {"name":"cook","profiles":["default"],"label":null,"version":"7b5da0d68d9237f2852f7ac6c5e7474fd433c3f3","propertySources":[{"name":"https://github.com/spring-cloud-services-samples/cook-config/cook.properties","source":{"cook.special":"Pickled Cactus"}}]}
     </pre>
 
