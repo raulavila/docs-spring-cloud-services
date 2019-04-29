@@ -61,6 +61,7 @@ Spring Cloud Services for PCF has the following requirements:
 * A single Pivotal Application Service (PAS) SSL certificate (see the PCF documentation for information about <a href="https://docs.pivotal.io/pivotalcf/opsguide/security_config.html">configuring the SSL certificate</a>) that includes the following domains, where `SYS_DOMAIN.TLD` is your PCF foundation's system domain and `APP_DOMAIN.TLD` is your PCF foundation's application domain:
   * `*.SYS_DOMAIN.TLD`
   * `*.APP_DOMAIN.TLD`
+* If you intend to keep versions of the Spring Cloud Services tile older than 3.0.0 installed, then your certificate will additionally require the following domains:
   * `*.login.SYS_DOMAIN.TLD`
   * `*.uaa.SYS_DOMAIN.TLD`
 <% end %>
