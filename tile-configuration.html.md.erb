@@ -58,3 +58,11 @@ Spring Cloud Services includes one post-deploy errands and one pre-delete errand
 <p class='note'><strong>Important</strong>: To ensure that your PCF foundation receives important updates to the tile, Pivotal recommends that all Spring Cloud Services lifecycle errands be set to <strong>On</strong>.</p>
 
 The **register-brokers** errand registers the Spring Cloud Services Config Server service broker and the associated mirror service's broker with the Cloud Controller and makes the Config Server service's service plans available to all orgs. The **destroy-brokers** errand deletes all orgs and spaces specific to Spring Cloud Services and deregisters the Config Server and mirror service brokers from the Cloud Controller.
+
+## <a id="mirror-service-resource-configuration"></a>Mirror Service Resource Configuration
+
+The Spring Cloud Services Config Server relies on a "mirror service" to make mirrors of Git repositories used by Config Server service instances. You can configure the size of the persistent disk used to store these Git mirrors. In the Spring Cloud Services tile settings, navigate to the **Resource Config** pane.
+
+<%= image_tag("/spring-cloud-services/images/operator-information/configure-mirror-service-resource.png") %>
+
+For the **spring-cloud-services** job, select the desired disk size value from the dropdown under **Persistent Disk Type**. The default value is 10 GB. Consider setting a size equal to the disk space required to mirror all Git repositories potentially used by Config Server service instances, with some additional disk space.
