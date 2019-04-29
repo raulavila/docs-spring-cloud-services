@@ -19,15 +19,6 @@ See below for the Spring Cloud Services releases that include each service versi
 
 | Service Version | Tile Version       |
 ------------------|--------------------|
-| 1               | 1.0.0 - 1.0.3      |
-| 2               | >= 1.0.4 & < 1.1.0 |
-| 3               | 1.1.x              |
-| 4               | 1.2.0 - 1.2.3      |
-| 5               | 1.3.0              |
-| 6               | >= 1.2.4 & < 1.3.0 |
-| 7               | >= 1.3.1 & < 1.4.0 |
-| 8               | 1.4.0 - 1.4.2      |
-| 9               | >= 1.4.3 & < 1.5.0 |
 | 10              | 1.5.x              |
 | 20              | 2.0.x              |
 | 30              | 3.0.x              |
@@ -58,9 +49,4 @@ Service instances created using the `trial` plan are deleted seven days after cr
 Spring Cloud Services for PCF has the following requirements:
 
 * [Java Cloud Foundry buildpack](https://github.com/cloudfoundry/java-buildpack) version 4.5 or later (if the default Java buildpack is not at version 4.5 or later, you must specify an alternate buildpack that is at version 4.5 or later when installing Spring Cloud Services; see [Set Buildpack for Service Instances](../tile-configuration.html#set-buildpack-for-service-instances))
-* A single Pivotal Application Service (PAS) SSL certificate (see the PCF documentation for information about <a href="https://docs.pivotal.io/pivotalcf/opsguide/security_config.html">configuring the SSL certificate</a>) that includes the following domains, where `SYS_DOMAIN.TLD` is your PCF foundation's system domain and `APP_DOMAIN.TLD` is your PCF foundation's application domain:
-  * `*.SYS_DOMAIN.TLD`
-  * `*.APP_DOMAIN.TLD`
-  * `*.login.SYS_DOMAIN.TLD`
-  * `*.uaa.SYS_DOMAIN.TLD`
 <% end %>
