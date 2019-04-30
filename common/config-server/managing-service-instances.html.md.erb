@@ -30,9 +30,21 @@ Create the service instance using `cf create-service`, using the `-c` flag to pr
 
 General parameters accepted for the Config Server are listed below.
 
-| Parameter            | Function                                                                                   | Example                          |
-|----------------------|--------------------------------------------------------------------------------------------|----------------------------------|
-| <code>count</code>   | The number of nodes to provision: 1 by default, more for running in high-availability mode | <code>'{"count": 3}'</code>      |
+<table>
+	<col style="width:15%">
+	<col style="width:60%">
+	<col style="width:25%">
+	<thead>
+		<td><strong>Parameter</strong></td>
+		<td><strong>Function</strong></td>
+		<td><strong>Example</strong></td>
+	</thead>
+	<tr>
+		<td><code>count</code></td>
+		<td>The number of nodes to provision: 1 by default, more for running in high-availability mode</td>
+    <td><code>'{"count": 3}'</code></td>
+	</tr>
+</table>
 
 To create an instance, specifying settings for a Git backend and that three nodes should be provisioned:
 
@@ -73,9 +85,21 @@ Then run `cf update-service SERVICE_NAME -c '{ "PARAMETER": "VALUE" }'`, where `
 
 General parameters accepted for the Config Server are listed below.
 
-| Parameter          | Function                                                                                   | Example                     |
-|--------------------|--------------------------------------------------------------------------------------------|-----------------------------|
-| <code>count</code> | The number of nodes to provision: 1 by default, more for running in high-availability mode | <code>'{"count": 3}'</code> |
+<table>
+	<col style="width:15%">
+	<col style="width:60%">
+	<col style="width:25%">
+	<thead>
+		<td><strong>Parameter</strong></td>
+		<td><strong>Function</strong></td>
+		<td><strong>Example</strong></td>
+	</thead>
+	<tr>
+		<td><code>count</code></td>
+		<td>The number of nodes to provision: 1 by default, more for running in high-availability mode</td>
+    <td><code>'{"count": 3}'</code></td>
+	</tr>
+</table>
 
 To update a service instance, configuring a Git backend, run:
 

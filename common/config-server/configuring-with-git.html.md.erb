@@ -17,15 +17,42 @@ See below for information about configuring a Config Server service instance to 
 
 Parameters used to configure configuration sources are part of a JSON object called `git`, as in `{"git": { "uri": "https://example.com/config" } }`. General parameters used to configure the Config Server's default configuration source are listed below.
 
-| Parameter                      | Function                                                                                                                          |
-|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| <code>uri</code>               | The URI (<code>http://</code>, <code>https://</code>, or <code>ssh://</code>) of a Git repository. Required                       |
-| <code>label</code>             | The default "label" used if a request is received without a label. Default value: <code>master</code>                             |
-| <code>searchPaths</code>       | A pattern used to search for configuration-containing subdirectories in the repository                                            |
-| <code>username</code>          | The username used to access the repository (if protected by HTTP Basic authentication)                                            |
-| <code>password</code>          | The password used to access the repository (if protected by HTTP Basic authentication).                                           |
-| <code>refreshRate</code>       | Interval, in seconds, between refreshes of the Config Server's repository clone when a client requests configuration              |
-| <code>skipSslValidation</code> | For a `https://` URI, whether to skip validation of the SSL certificate on the repository's server. Valid values: `true`, `false` |
+<table>
+	<col style="width:30%">
+	<col style="width:70%">
+	<thead>
+		<td><strong>Parameter</strong></td>
+		<td><strong>Function</strong></td>
+	</thead>
+	<tr>
+		<td><code>uri</code></td>
+		<td>The URI (<code>http://</code>, <code>https://</code>, or <code>ssh://</code>) of a Git repository. Required</td>
+	</tr>
+	<tr>
+		<td><code>label</code></td>
+		<td>The default "label" used if a request is received without a label. Default value: <code>master</code></td>
+	</tr>
+	<tr>
+		<td><code>searchPaths</code></td>
+		<td>A pattern used to search for configuration-containing subdirectories in the repository</td>
+	</tr>
+	<tr>
+		<td><code>username</code></td>
+		<td>The username used to access the repository (if protected by HTTP Basic authentication)</td>
+	</tr>
+	<tr>
+		<td><code>password</code></td>
+		<td>The password used to access the repository (if protected by HTTP Basic authentication)</td>
+	</tr>
+	<tr>
+		<td><code>refreshRate</code></td>
+		<td>Interval, in seconds, between refreshes of the Config Server's repository clone when a client requests configuration</td>
+	</tr>
+	<tr>
+		<td><code>skipSslValidation</code></td>
+    <td>For a <code>https://</code> URI, whether to skip validation of the SSL certificate on the repository's server. Valid values: <code>true</code>, <code>false</code></td>
+	</tr>
+</table>
 
 You can set `label` to a branch name, a tag name, or a specific Git commit hash. To set `label` to point to the `develop` branch of a repository, you might configure settings as in the following:
 
@@ -66,12 +93,30 @@ cf create-service p.config-server standard config-server -c '{"git": { "uri": "g
 
 The parameters used to configure SSH for a Config Server configuration source's URI are listed below.
 
-| Parameter                      | Function                                                                                                                                                |
-|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <code>hostKey</code>           | The host key of the Git server. If you have connected to the server via git on the command line, this is in your <code>.ssh/known_hosts</code>. Do not include the algorithm prefix; this is specified in <code>hostKeyAlgorithm</code>. (Optional.)                                                                                        |
-| <code>hostKeyAlgorithm</code>  | The algorithm of <code>hostKey</code>: one of "ssh-dss", "ssh-rsa", "ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", and "ecdsa-sha2-nistp521". (Required if supplying <code>hostKey</code>.)            |
-| <code>privateKey</code>        | The private key that identifies the Git user, with all newline characters replaced by <code>\n</code>. Passphrase-encrypted private keys are not supported.                     |
-| <code>strictHostKeyChecking</code> | Whether the Config Server should fail to start if it encounters an error when using the provided <code>hostKey</code>. (Optional.) Valid values are `true` and `false`. Default is `true`.      |
+<table>
+	<col style="width:30%">
+	<col style="width:70%">
+	<thead>
+		<td><strong>Parameter</strong></td>
+		<td><strong>Function</strong></td>
+	</thead>
+	<tr>
+		<td><code>hostKey</code></td>
+		<td>The host key of the Git server. If you have connected to the server via git on the command line, this is in your <code>.ssh/known_hosts</code>. Do not include the algorithm prefix; this is specified in <code>hostKeyAlgorithm</code>. (Optional.)</td>
+	</tr>
+	<tr>
+		<td><code>hostKeyAlgorithm</code></td>
+		<td>The algorithm of <code>hostKey</code>: one of "ssh-dss", "ssh-rsa", "ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", and "ecdsa-sha2-nistp521". (Required if supplying <code>hostKey</code>.)</td>
+	</tr>
+	<tr>
+		<td><code>privateKey</code></td>
+		<td>The private key that identifies the Git user, with all newline characters replaced by <code>\n</code>. Passphrase-encrypted private keys are not supported.</td>
+	</tr>
+	<tr>
+		<td><code>strictHostKeyChecking</code></td>
+    <td>Whether the Config Server should fail to start if it encounters an error when using the provided <code>hostKey</code>. (Optional.) Valid values are <code>true</code> and <code>false</code>. Default is <code>true</code>.</td>
+	</tr>
+</table>
 
 To configure a Config Server service instance that uses SSH to access a configuration source, allowing for host key verification, use the following command:
 
@@ -107,20 +152,62 @@ cf create-service p.config-server standard config-server -c '{"git": { "proxy": 
 
 The parameters used to configure HTTP or HTTPS proxy settings for the Config Server are listed below.
 
-| Parameter                                  | Function                                                                                                                                            |
-|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| <code>proxy.http</code>                    | A proxy object, containing HTTP proxy fields                                                                                                        |
-| <code>proxy.http.host</code>               | The HTTP proxy host                                                                                                                                 |
-| <code>proxy.http.port</code>               | The HTTP proxy port                                                                                                                                 |
-| <code>proxy.http.nonProxyHosts</code>      | The hosts to access outside the HTTP proxy                                                                                                          |
-| <code>proxy.http.username</code>           | The username to use with an authenticated HTTP proxy                                                                                                |
-| <code>proxy.http.password</code>           | The password to use with an authenticated HTTP proxy                                                                                                |
-| <code>proxy.https</code>                   | A proxy object, containing HTTPS proxy fields                                                                                                       |
-| <code>proxy.https.host</code>              | The HTTPS proxy host                                                                                                                                |
-| <code>proxy.https.port</code>              | The HTTPS proxy port                                                                                                                                |
-| <code>proxy.https.nonProxyHosts</code>     | The hosts to access outside the HTTPS proxy (if <code>proxy.http.nonProxyHosts</code> is also provided, <code>http.nonProxyHosts</code> will be used instead of <code>https.nonProxyHosts</code>)      |
-| <code>proxy.https.username</code>          | The username to use with an authenticated HTTPS proxy (if <code>proxy.http.username</code> is also provided, <code>http.username</code> will be used instead of <code>https.username</code>) |
-| <code>proxy.https.password</code>          | The password to use with an authenticated HTTPS proxy (if <code>proxy.http.password</code> is also provided, <code>http.password</code> will be used instead of <code>https.password</code>) |
+<table>
+	<col style="width:35%">
+	<col style="width:65%">
+	<thead>
+		<td><strong>Parameter</strong></td>
+		<td><strong>Function</strong></td>
+	</thead>
+	<tr>
+		<td><code>proxy.http</code></td>
+		<td>A proxy object, containing HTTP proxy fields</td>
+	</tr>
+	<tr>
+		<td><code>proxy.http.host</code></td>
+		<td>The HTTP proxy host</td>
+	</tr>
+	<tr>
+		<td><code>proxy.http.port</code></td>
+		<td>The HTTP proxy port</td>
+	</tr>
+	<tr>
+		<td><code>proxy.http.nonProxyHosts</code></td>
+    <td>The hosts to access outside the HTTP proxy</td>
+	</tr>
+	<tr>
+		<td><code>proxy.http.username</code></td>
+    <td>The username to use with an authenticated HTTP proxy</td>
+	</tr>
+	<tr>
+		<td><code>proxy.http.password</code></td>
+    <td>The password to use with an authenticated HTTP proxy</td>
+	</tr>
+	<tr>
+		<td><code>proxy.https</code></td>
+    <td>A proxy object, containing HTTPS proxy fields</td>
+	</tr>
+	<tr>
+		<td><code>proxy.https.host</code></td>
+    <td>The HTTPS proxy host</td>
+	</tr>
+	<tr>
+		<td><code>proxy.https.port</code></td>
+    <td>The HTTPS proxy port</td>
+	</tr>
+	<tr>
+		<td><code>proxy.https.nonProxyHosts</code></td>
+    <td>The hosts to access outside the HTTPS proxy (if <code>proxy.http.nonProxyHosts</code> is also provided, <code>http.nonProxyHosts</code> will be used instead of <code>https.nonProxyHosts</code>)</td>
+	</tr>
+	<tr>
+		<td><code>proxy.https.username</code></td>
+    <td>The username to use with an authenticated HTTPS proxy (if <code>proxy.http.username</code> is also provided, <code>http.username</code> will be used instead of <code>https.username</code>)</td>
+	</tr>
+	<tr>
+		<td><code>proxy.https.password</code></td>
+    <td>The password to use with an authenticated HTTPS proxy (if <code>proxy.http.password</code> is also provided, <code>http.password</code> will be used instead of <code>https.password</code>)</td>
+	</tr>
+</table>
 
 To configure a Config Server service instance that uses an HTTP proxy to access configuration sources, use the following command:
 
